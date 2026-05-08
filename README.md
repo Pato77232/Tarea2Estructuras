@@ -1,83 +1,149 @@
-# Recorridos de Árboles Binarios - Estructura de Datos
+# Recorridos de Árboles Binarios
 
-**Universidad Técnica de Ambato**  
-**Carrera:** Ingeniería de Software  
-**Asignatura:** Estructura de Datos  
-**Curso:** Tercero B  
+**Universidad Técnica de Ambato**
+**Carrera:** Ingeniería de Software
+**Asignatura:** Estructura de Datos
+**Curso:** Tercero B
 **Tema:** Recorridos de árboles binarios: Inorden, Preorden, Postorden y BFS
 
-## Objetivo general
-Implementar y analizar los principales recorridos de árboles binarios utilizando C++ y Java, aplicando estructuras de datos dinámicas, recursividad y colas.
+---
 
-## Resultados de aprendizaje
-Al finalizar la práctica, el estudiante será capaz de:
+## Descripción general
 
-1. Explicar la diferencia entre recorridos DFS y BFS.
-2. Implementar recorridos Inorden, Preorden y Postorden con recursividad.
-3. Implementar BFS usando una cola.
-4. Comparar la implementación en C++ y Java.
-5. Aplicar recorridos de árboles a un caso real del proyecto final.
+Este repositorio contiene la implementación de los principales recorridos de árboles binarios utilizando **C++** y **Java**. Se aplican conceptos de estructuras de datos dinámicas, recursividad y colas (BFS), con el objetivo de analizar y comparar el comportamiento de cada recorrido sobre el mismo árbol.
 
-## Contenido
+---
 
-| Carpeta | Descripción |
-|---|---|
-| `docs/` | Guía práctica para la clase |
-| `src/cpp/` | Implementación completa en C++ |
-| `src/java/` | Implementación completa en Java |
-| `exercises/` | Ejercicios para trabajo grupal |
-| `moodle/` | Banco de preguntas tipo Moodle |
-| `assets/` | Recursos de apoyo |
+## Objetivos
+
+- Implementar y comparar recorridos DFS (Inorden, Preorden, Postorden) y BFS en C++ y Java.
+- Aplicar recursividad para los recorridos en profundidad.
+- Utilizar una cola para implementar el recorrido por niveles (BFS).
+- Adaptar los recorridos a un caso real del proyecto final.
+
+---
+
+## Estructura del repositorio
+
+```
+tarea2.2_recorridos_arboles_uta/
+├── src/
+│   ├── cpp/
+│   │   └── main.cpp          # Implementación en C++
+│   └── java/
+│       └── Main.java         # Implementación en Java
+├── docs/
+│   └── guia_practica.md      # Guía de la práctica
+├── exercises/
+│   └── ejercicios.md         # Enunciados de ejercicios
+├── moodle/
+│   └── preguntas_moodle.md   # Banco de preguntas
+└── README.md
+```
+
+---
+
+## Árbol utilizado
+
+El árbol binario trabajado en los ejercicios es el siguiente:
+
+```
+        10
+       /  \
+      5    15
+     / \   / \
+    2   7 12  20
+```
+
+Con nodos adicionales en el Ejercicio 2: **1, 3, 18 y 25**.
+
+---
 
 ## Reglas de recorrido
 
-| Recorrido | Orden |
-|---|---|
-| Inorden | Izquierda → Raíz → Derecha |
-| Preorden | Raíz → Izquierda → Derecha |
-| Postorden | Izquierda → Derecha → Raíz |
-| BFS | Nivel por nivel usando cola |
+| Recorrido | Orden de visita            | Tipo |
+| --------- | -------------------------- | ---- |
+| Preorden  | Raíz → Izquierda → Derecha | DFS  |
+| Inorden   | Izquierda → Raíz → Derecha | DFS  |
+| Postorden | Izquierda → Derecha → Raíz | DFS  |
+| BFS       | Nivel por nivel (cola)     | BFS  |
 
-## Ejecución en C++
+---
+
+## Ejecución
+
+### C++
 
 ```bash
 cd src/cpp
 g++ main.cpp -o recorridos
 ./recorridos
+![alt text](image-1.png)
 ```
 
-## Ejecución en Java
+### Java
 
 ```bash
 cd src/java
 javac Main.java
 java Main
+![alt text](image.png)
 ```
 
-## Actividad  sugerida:
+---
 
-1. Clonar el repositorio.
-2. Ejecutar el código base.
-3. Agregar mínimo 5 nodos nuevos.
-4. Mostrar los cuatro recorridos.
-5. Modificar el caso de aplicación al proyecto final.
-6. Subir evidencias al repositorio GitHub del grupo.
+## Salida esperada en consola
 
-## Entregables
+```
+RECORRIDOS DE ARBOLES BINARIOS - UTA
+Preorden:   10 5 2 7 15 12 20
+Inorden:    2 5 7 10 12 15 20
+Postorden:  2 7 5 12 20 15 10
+BFS:        10 5 15 2 7 12 20
+```
 
-- Captura de ejecución en consola.
-- Código fuente comentado.
-- README del grupo.
-- Explicación del caso real.
-- Link del repositorio GitHub.
+---
 
-## Rúbrica breve sobre 10 puntos
+**¿Qué recorrido usar según la tarea?**
 
-| Criterio | Puntaje |
-|---|---:|
-| Implementación correcta de recorridos | 3 |
-| Uso correcto de recursividad y cola | 2 |
-| Código comentado y organizado | 1.5 |
-| Aplicación al proyecto final | 2 |
-| Uso de GitHub e IA documentada | 1.5 |
+| Tarea                                                 | Recorrido recomendado | Justificación                                                                             |
+| ----------------------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------- |
+| Mostrar el menú principal (raíz primero)              | **Preorden**          | Visita la raíz antes que los subárboles, ideal para mostrar jerarquías de menú.           |
+| Procesar primero los módulos internos (hojas primero) | **Postorden**         | Procesa los hijos antes que el padre, útil para liberar recursos o calcular dependencias. |
+| Mostrar módulos nivel por nivel                       | **BFS**               | Recorre por niveles usando cola, ideal para mostrar un menú organizado por profundidad.   |
 
+---
+
+## Comparación C++ vs Java
+
+| Aspecto                | C++                                     | Java                           |
+| ---------------------- | --------------------------------------- | ------------------------------ |
+| Definición del nodo    | `struct Nodo` con punteros (`*`)        | `class Nodo` con referencias   |
+| Manejo de memoria      | Manual (`new`, sin `delete` en ejemplo) | Automático (Garbage Collector) |
+| Cola para BFS          | `queue<Nodo*>` de `<queue>`             | `Queue<Nodo>` con `LinkedList` |
+| Valor nulo             | `nullptr`                               | `null`                         |
+| Imprimir               | `cout << valor`                         | `System.out.print(valor)`      |
+| Complejidad sintáctica | Mayor (punteros, cabeceras)             | Menor (OOP puro)               |
+
+---
+
+## Preguntas de reflexión
+
+1. **¿Qué recorrido sirve para ordenar valores en un BST?**
+   El **Inorden** (Izquierda → Raíz → Derecha), ya que en un Árbol Binario de Búsqueda visita los nodos en orden ascendente.
+
+2. **¿Qué diferencia existe entre DFS y BFS?**
+   DFS recorre en profundidad (sigue una rama hasta el final antes de explorar otra), mientras que BFS recorre por niveles (visita todos los nodos de un nivel antes de bajar al siguiente).
+
+3. **¿Por qué BFS requiere una cola?**
+   Porque necesita recordar los nodos pendientes de visitar en orden de llegada (FIFO). La cola garantiza que se procesen nivel por nivel sin saltarse nodos.
+
+4. **¿En qué caso real se puede usar Preorden?**
+   Para serializar o copiar la estructura de un árbol, o para mostrar menús jerárquicos donde el elemento padre aparece antes que sus hijos.
+
+5. **¿En qué caso real se puede usar Postorden?**
+   Para eliminar un árbol de memoria (liberar hijos antes que el padre), o para evaluar expresiones matemáticas en árboles de expresiones (operandos antes que el operador).
+
+---
+
+_Universidad Técnica de Ambato — Ingeniería de Software — Estructura de Datos — 2025_
